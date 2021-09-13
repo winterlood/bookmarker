@@ -15,14 +15,22 @@ const withShareCapture = WrappedComponent => {
 
     const handleShare = useCallback(
       async (item: apptypes.SharedItem | null) => {
+        var curSharedItem = {
+          mimeType: 'text/plain',
+          data: 'https://naver.com',
+        };
+
+        console.log(curSharedItem);
+
         // CHECK NOW SHARE
-        if (!item) {
+        if (!curSharedItem) {
           setShareState(initState);
+
           return;
         }
 
         // COMPREHENSE OBJECT ITEMS
-        const {mimeType, data} = item;
+        const {mimeType, data} = curSharedItem;
 
         // CHECK VALIDATE LINK
         if (mimeType !== 'text/plain' || !isSiteLink(data)) {

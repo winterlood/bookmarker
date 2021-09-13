@@ -1,12 +1,23 @@
-import {apptypes} from '@apptypes';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import withShareCapture from './hoc/withShareCapture';
 
-const App = ({shareState}: {shareState: apptypes.shareState}) => {
+// TYPES
+import {apptypes} from '@apptypes';
+import AddBookmarkModal from './component/AddBookmarkModal';
+
+type Props = {
+  shareState: apptypes.shareState;
+};
+const App = ({shareState}: Props) => {
   if (shareState.isSharedNow) {
     return (
       <View style={styles.container}>
+        {shareState.isSharedNow && (
+          <>
+            <AddBookmarkModal isVisible={shareState.isSharedNow} />
+          </>
+        )}
         <Text style={styles.welcome}>BOOK MARKER</Text>
         <Text> share site : {shareState.bookmarkItem.site}</Text>
         <Text> share site : {shareState.bookmarkItem.description}</Text>
