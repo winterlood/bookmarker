@@ -4,14 +4,15 @@ import withShareCapture from './hoc/withShareCapture';
 
 // TYPES
 import {apptypes} from '@apptypes';
-import AddBookmarkModal from './component/AddBookmarkModal';
+import AddBookmarkModal from './component/organism/AddBookmarkModal';
+import {AppProvider} from './store/AppStore';
 
 type Props = {
   shareState: apptypes.shareState;
 };
 const App = ({shareState}: Props) => {
-  if (shareState.isSharedNow) {
-    return (
+  return (
+    <AppProvider>
       <View style={styles.container}>
         {shareState.isSharedNow && (
           <>
@@ -19,17 +20,11 @@ const App = ({shareState}: Props) => {
           </>
         )}
         <Text style={styles.welcome}>BOOK MARKER</Text>
-        <Text> share site : {shareState.bookmarkItem.site}</Text>
-        <Text> share site : {shareState.bookmarkItem.description}</Text>
+        {/* <Text> share site : {shareState.bookmarkItem.site}</Text>
+        <Text> share site : {shareState.bookmarkItem.description}</Text> */}
       </View>
-    );
-  } else {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>BOOK MARKER</Text>
-      </View>
-    );
-  }
+    </AppProvider>
+  );
 };
 
 const styles = StyleSheet.create({

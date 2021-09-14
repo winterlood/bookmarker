@@ -1,13 +1,31 @@
-import React, {useContext} from 'react';
+import {apptypes} from '@apptypes';
+import React, {useContext, useState} from 'react';
 
 // STATE TYPES
-type State = {};
+type State = {
+  labelList: apptypes.LabelItem[];
+  bookmarkList: apptypes.BookmarkItem[];
+};
+
+type Store = {
+  labelList: apptypes.LabelItem[];
+  bookmarkList: apptypes.BookmarkItem[];
+};
 
 // CONTEXT
-const AppContext = React.createContext<State | null>(null);
+const AppContext = React.createContext<Store | null>(null);
 
+const initialState: State = {
+  labelList: [],
+  bookmarkList: [],
+};
 export const AppProvider = ({children}) => {
-  const store = {};
+  const [state, setState] = useState(initialState);
+
+  const store = {
+    labelList: state.labelList,
+    bookmarkList: state.bookmarkList,
+  };
 
   return <AppContext.Provider value={store}>{children}</AppContext.Provider>;
 };

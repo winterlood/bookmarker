@@ -15,6 +15,16 @@ declare module '@apptypes' {
       description: string;
     };
 
+    type AddLabelItem = {
+      name: string;
+      color: string;
+    };
+    type LabelItem = {
+      id: string;
+      name: string;
+      color: string;
+    };
+
     type shareState =
       | {isSharedNow: false}
       | {isSharedNow: true; bookmarkItem: apptypes.BookmarkItem};
